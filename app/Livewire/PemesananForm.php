@@ -1,11 +1,13 @@
 <?php
-
-namespace App\Livewire;
+// App/Http/Livewire/PemesananForm.php
+namespace App\Http\Livewire;
 
 use Livewire\Component;
 
 class PemesananForm extends Component
 {
-    protected $view = 'components.layouts.app';
-
+    public function render()
+    {
+        return view('livewire.pemesanan-form');
+    }
 }
