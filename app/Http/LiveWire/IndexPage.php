@@ -6,10 +6,9 @@ use Livewire\Component;
 
 class IndexPage extends Component
 {
-    protected $layout = 'components.layouts.app';
-
     public function render()
     {
-        return view('livewire.index-page');
+        return view('livewire.index-page')
+            ->layout('components.layouts.app'); // Pastikan path ini sesuai
     }
 }

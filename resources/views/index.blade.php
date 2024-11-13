@@ -1,34 +1,11 @@
 <!-- resources/views/livewire/index-page.blade.php -->
+@extends('layouts.app')
+
+@section('title', 'Beranda')
+
+@section('content')
 <div>
-    <div class="container mx-auto py-8">
-        <div class="flex items-center justify-between mb-8">
-            <a href="#home" class="navbar-brand ">Hutan Pinusan Kalilo</a>
-            <button class="navbar-toggler block md:hidden" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-
-        <div class="collapse navbar-collapse md:block" id="navbarText">
-            <ul class="navbar-nav flex items-center">
-                <li class="nav-item">
-                    <a href="pesan.html" class="nav-link block py-2 px-4 hover:bg-gray-200 rounded">Pesan Sekarang</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#Memesan" class="nav-link block py-2 px-4 hover:bg-gray-200 rounded">Cara memesan</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link block py-2 px-4 hover:bg-gray-200 rounded">Tentang kami</a>
-                </li>
-                <li class="navbar-brand">
-                    <a href="login.html">
-                        <img src="{{ asset('img/3917705.svg') }}" class="w-10 h-10" alt="Bootstrap">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+    <!-- Hero Section -->
     <div class="section bg-gray-100 py-16" id="deskripsi">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -39,7 +16,7 @@
                         Kabupaten Purworejo, Jawa Tengah. Selain di suguhkan dengan pemandangan yang sangai indah, banyak spot
                         foto yang menarik di Hutan Pinusan Kalilo
                     </p>
-                    <a href="pesan.html" class="btn btn-primary btn-lg text-right">PESAN SEKARANG</a>
+                    <a href="{{ route('pemesanan.create') }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">PESAN SEKARANG</a>
                 </div>
                 <div>
                     <img src="{{ asset('img/tmbnl.jpg') }}" alt="Thumbnail" class="w-full rounded-lg shadow-md">
@@ -48,93 +25,77 @@
         </div>
     </div>
 
-    <div class="section py-16" id="Galleri">
-        <div class="container mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold">Galleri</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/bg.jpg') }}" class="card-img-top" alt="Galleri1">
-                    </div>
+    <!-- Gallery Section -->
+    <section class="py-16" id="Galleri">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Galleri</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                @foreach(['bg.jpg', 'hom.jpg', 'kalilo2.jpeg', 'tmbnl.jpg'] as $image)
+                <div class="overflow-hidden rounded-lg shadow-lg">
+                    <img src="{{ asset('img/' . $image) }}" class="w-full h-64 object-cover" alt="Gallery Image">
                 </div>
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/hom.jpg') }}" class="card-img-top" alt="Galleri2">
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/kalilo2.jpeg') }}" class="card-img-top" alt="Galleri3">
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/tmbnl.jpg') }}" class="card-img-top" alt="Galleri4">
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section py-16" id="Memesan">
-        <div class="container mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold">Cara Memesan</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/cara/fr1.png') }}" class="card-img-top" alt="project2">
-                        <div class="card-body text-center" style="width: 18rem; height: 5rem">
-                            Tekan menu pesan sekarang
-                        </div>
+    <!-- How to Order Section -->
+    <section class="py-16 bg-gray-50" id="Memesan">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Cara Memesan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ asset('img/cara/fr1.png') }}" class="w-full h-48 object-cover" alt="Step 1">
+                    <div class="p-4 text-center">
+                        <p>Tekan menu pesan sekarang</p>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/cara/fr2.png') }}" class="card-img-top" alt="project3">
-                        <div class="card-body text-center" style="width: 18rem; height: 5rem">
-                            Isi form pemesanan
-                        </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ asset('img/cara/fr2.png') }}" class="w-full h-48 object-cover" alt="Step 2">
+                    <div class="p-4 text-center">
+                        <p>Isi form pemesanan</p>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/cara/fr3.png') }}" class="card-img-top" alt="project3">
-                        <div class="card-body text-center" style="width: 18rem; height: 5rem">
-                            Lakukan pembayaran dan masukan bukti di form pemesanan
-                        </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ asset('img/cara/fr3.png') }}" class="w-full h-48 object-cover" alt="Step 3">
+                    <div class="p-4 text-center">
+                        <p>Lakukan pembayaran dan masukan bukti di form pemesanan</p>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <div class="card rounded-lg overflow-hidden">
-                        <img src="{{ asset('img/cara/fr4.png') }}" class="card-img-top" alt="project5">
-                        <div class="card-body text-center" style="width: 18rem; height: 5rem">
-                            Setelah pemesanan di konfirmasi tiket akan di kirimkan melalui email
-                        </div>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="{{ asset('img/cara/fr4.png') }}" class="w-full h-48 object-cover" alt="Step 4">
+                    <div class="p-4 text-center">
+                        <p>Setelah pemesanan di konfirmasi tiket akan di kirimkan melalui email</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section py-16" id="contact">
-        <div class="container mx-auto">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold">Tentang Kami</h2>
-            </div>
-            <div class="flex justify-center">
-                <div class="w-full md:w-1/2">
-                    <div class="mb-4">Nama Lengkap</div>
-                    <div class="mb-4">Email</div>
-                    <div class="mb-4">Pesan</div>
-                    <button type="submit" class="btn btn-primary">Kirim</button>
-                </div>
+    <!-- Contact Section -->
+    <section class="py-16" id="contact">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Tentang Kami</h2>
+            <div class="max-w-md mx-auto">
+                <form>
+                    <div class="mb-4">
+                        <label class="block mb-2">Nama Lengkap</label>
+                        <input type="text" class="w-full p-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">Email</label>
+                        <input type="email" class="w-full p-2 border rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">Pesan</label>
+                        <textarea class="w-full p-2 border rounded" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Kirim</button>
+                </form>
             </div>
         </div>
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAxNDQwIDMyMCI+CiAgICAgICAgPHBhdGggZmlsbD0iIzY5YmQ4NSIgZmlsbC1vcGFjaXR5PSIxIiBkPSJNMCwyMjRMNDgsMjI5LjNDOTYsMjM1LDE5MiwyNDUsMjg4LDI0NS4zQzM4NCwyNDUsNDgwLDIzNSw1NzYsMjE4LjdDNjcyLDIwMyw3NjgsMTgxLDg2NCwxODEuM0M5NjAsMTgxLDEwNTYsMjAzLDExNTIsMjE4LjdDMTI0OCwyMzUsMTM0NCwyNDUsMTM5MiwyNTAuN0wxNDQwLDI1NkwxNDQwLDMyMEwxMzkyLDMyMEMxMzQ0LDMyMCwxMjQ4LDMyMCwxMTUyLDMyMEMxMDU2LDMyMCw5NjAsMzIwLDg2NCwzMjBDNzY4LDMyMCw2NzIsMzIwLDU3NiwzMjBDNDgwLDMyMCwzODQsMzIwLDI4OCwzMjBDMTkyLDMyMCw5NiwzMjAsNDgsMzIwTDAsMzIwWiIgLz4KICAgICAgPC9zdmc+" class="w-full h-auto">
-        <p class="text-black text-center">Created by <a href="https://www.instagram.com/ilhams.13d/" class="text-black">Ilham Setyaka</a></p>
-    </div>
+        
+    </section>
 </div>
+@endsection
+
