@@ -10,10 +10,20 @@ return new class extends Migration
     {
         Schema::create('konfirmasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained('pemesanan');
+            $table->unsignedBigInteger('order_id');
             $table->decimal('amount', 10, 2);
             $table->string('proof_of_transfer');
             $table->timestamps();
+
+            $table->foreign('order_id')
+                  ->references('id')
+                  ->on('pemesanan')
+                  ->onDelete('cascade');
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('konfirmasi');
     }
 };

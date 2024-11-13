@@ -11,7 +11,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
                     <h1 class="text-4xl font-bold mb-4">Hutan Hutan Pinusan Kalilo</h1>
-                    <p class="mb-8 h1">
+                    <p class="mb-8 text-lg">
                         Hutan Pinusan Kalilo merupakan destinasi wisata yang berada di Desa Tlogoguwo, Kecamatan Kaligesing,
                         Kabupaten Purworejo, Jawa Tengah. Selain di suguhkan dengan pemandangan yang sangai indah, banyak spot
                         foto yang menarik di Hutan Pinusan Kalilo

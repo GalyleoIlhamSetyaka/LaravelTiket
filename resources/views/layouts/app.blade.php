@@ -48,11 +48,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white mt-auto">
+    <footer class="bg-white mt-auto inset-x-0 bottom-0">
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <p class="text-center text-gray-600">
                 © {{ date('Y') }} Hutan Pinusan Kalilo. Created by 
-                <a href="https://www.instagram.com/ilhams.13d/" class="text-blue-600 hover:underline">Ilham Setyaka</a>
+                <a href="https://github.com/GalyleoIlhamSetyaka" class="text-blue-600 hover:underline">Ilham Setyaka</a>
             </p>
         </div>
     </footer>

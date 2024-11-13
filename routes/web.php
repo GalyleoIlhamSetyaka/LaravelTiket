@@ -8,6 +8,11 @@ use app\Http\Livewire\IndexPage;
 use app\Http\Livewire\PemesananForm;
 use resources\views\components\layout\app;
 
+
+
+
+Route::resource('pemesanan', PemesananController::class);
+
 // Route untuk halaman utama
 Route::get('/', function () {
     return view('index');

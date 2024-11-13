@@ -4,57 +4,47 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TiketPaket 
+class TiketPaket extends Model
 {
-    public static function getPakets()
+    public static function getPackages()
     {
         return [
-            [
-                'id' => 1,
-                'nama' => 'Paket Couple',
-                'jumlah_orang' => 2,
-                'harga' => 10000,
-                'deskripsi' => 'Paket untuk 2 orang',
-                'fitur' => [
-                    'Tiket masuk untuk 2 orang',
-                    'Parkir gratis',
-                    'Foto di spot utama'
+            1 => [
+                'name' => 'Basic Package',
+                'description' => 'Package for one person',
+                'num_people' => 2,
+                'price' => 10000,
+                'image' => 'img/paket/HPK-1.png',
+                'features' => [
+                    'Entrance ticket for 2',
                 ]
             ],
-            [
-                'id' => 2,
-                'nama' => 'Paket Keluarga',
-                'jumlah_orang' => 5,
-                'harga' => 25000,
-                'deskripsi' => 'Paket untuk 5 orang',
-                'fitur' => [
-                    'Tiket masuk untuk 5 orang',
-                    'Parkir gratis',
-                    'Foto di semua spot',
-                    'Welcome drink'
+            2 => [
+                'name' => 'Family Package',
+                'description' => 'Package for family',
+                'num_people' => 5,
+                'price' => 25000,
+                'image' => 'img/paket/HPK-2.png',
+                'features' => [
+                    'Entrance ticket for 5',
                 ]
             ],
-            [
-                'id' => 3,
-                'nama' => 'Paket Rombongan',
-                'jumlah_orang' => 10,
-                'harga' => 100000,
-                'deskripsi' => 'Paket untuk 10 orang',
-                'fitur' => [
-                    'Tiket masuk untuk 10 orang',
-                    'Parkir gratis',
-                    'Foto di semua spot',
-                    'Welcome drink',
-                    'Tour guide',
-                    'Makan siang'
+            3 => [
+                'name' => 'Group Package',
+                'description' => 'Package for groups',
+                'num_people' => 10,
+                'price' => 50000,
+                'image' => 'img/paket/HPK-3.png',
+                'features' => [
+                    'Entrance ticket for 10',
                 ]
-            ],
+            ]
         ];
     }
 
-    public static function getPaketById($id)
+    public static function getPackageById($id)
     {
-        return collect(self::getPakets())->firstWhere('id', $id);
+        $packages = self::getPackages();
+        return $packages[$id] ?? null;
     }
-
 }

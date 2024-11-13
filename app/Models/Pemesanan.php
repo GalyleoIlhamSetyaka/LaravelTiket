@@ -10,21 +10,31 @@ class Pemesanan extends Model
     use HasFactory;
 
     protected $table = 'pemesanan';
-    protected $fillable = ['order_code', 'order_date', 'num_people', 'price', 'visitor_id', 'proof_of_payment'];
+    
+    protected $fillable = [
+        'order_code',
+        'order_date',
+        'num_people',
+        'price',
+        'visitor_id',
+        'proof_of_payment'
+    ];
 
-    public function pengunjung()
-    {
-        return $this->belongsTo(Pengunjung::class, 'visitor_id');
-    }
+    protected $dates = [
+        'order_date'
+    ];
+}
 
-    public function konfirmasi()
-    {
-        return $this->hasOne(Konfirmasi::class, 'order_id');
-    }
+// app/Models/Pengunjung.php
+class Pengunjung extends Model
+{
+    use HasFactory;
 
-    // Accessor untuk mendapatkan URL bukti pembayaran
-    public function getProofOfPaymentUrlAttribute()
-    {
-        return $this->proof_of_payment ? asset('storage/' . $this->proof_of_payment) : null;
-    }
+    protected $table = 'pengunjung';
+    
+    protected $fillable = [
+        'name',
+        'email',
+        'phone'
+    ];
 }

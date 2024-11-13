@@ -9,11 +9,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pengunjung', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Ubah dari visitor_id menjadi id
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('phone');
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('pengunjung');
     }
 };

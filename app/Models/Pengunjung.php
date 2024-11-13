@@ -10,11 +10,16 @@ class Pengunjung extends Model
     use HasFactory;
 
     protected $table = 'pengunjung';
-    protected $fillable = ['name', 'email', 'phone'];
+    // Hapus protected $primaryKey karena menggunakan default 'id'
+
+    protected $fillable = [
+        'name',
+        'email',
+        'phone'
+    ];
 
     public function pemesanan()
     {
         return $this->hasMany(Pemesanan::class, 'visitor_id');
     }
 }
-
