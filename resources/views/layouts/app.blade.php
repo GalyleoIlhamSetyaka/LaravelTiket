@@ -28,13 +28,18 @@
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
-    <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+    <nav class="flex-no-wrap fixed top-0 flex w-full items-center justify-between bg-[#FBFBFB] py-4  lg:flex-wrap lg:justify-start lg:py-4 z-10">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="flex items-center justify-between w-full">
                 <a href="{{ route('index') }}" class="text-xl font-bold text-gray-800">Hutan Pinusan Kalilo</a>
-                <div class="flex space-x-4">
+                <div class="flex space-x-4 ml-auto"> <!-- Menambahkan ml-auto untuk mendorong menu ke kanan -->
                     <a href="{{ route('pemesanan.create') }}" class="text-gray-600 hover:text-gray-900">Pesan Tiket</a>
-                    <a href="{{ route('konfirmasi.create') }}" class="text-gray-600 hover:text-gray-900">Konfirmasi</a>
+                    <a href="#Galleri" class="text-gray-600 hover:text-gray-900">Galleri</a>
+                    <a href="#CaraMemesan" class="text-gray-600 hover:text-gray-900">Cara Memesan</a>
+                    <a href="#TentangKami" class="text-gray-600 hover:text-gray-900">Kontak Kami</a>
+                    <a href="/admin" class="text-gray-600 hover:text-gray-900">
+                        <img src="{{ asset('img/3917705.svg') }}" alt="login" class="inline-block w-7 h-7" />
+                    </a>                
                 </div>
             </div>
         </div>

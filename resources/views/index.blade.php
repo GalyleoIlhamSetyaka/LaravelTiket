@@ -40,7 +40,7 @@
     </section>
 
     <!-- How to Order Section -->
-    <section class="py-16 bg-gray-50" id="Memesan">
+    <section class="py-16" id="CaraMemesan">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-8">Cara Memesan</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
