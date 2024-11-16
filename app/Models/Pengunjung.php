@@ -1,21 +1,27 @@
 <?php
 
-namespace App\Models;
+namespace app\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Pengunjung extends Model
+class Pengunjung extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'pengunjung';
-    // Hapus protected $primaryKey karena menggunakan default 'id'
 
     protected $fillable = [
         'name',
         'email',
-        'phone'
+        'phone',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function pemesanan()

@@ -3,40 +3,56 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\KonfirmasiController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Storage;
-use app\Http\Livewire\IndexPage;
-use app\Http\Livewire\PemesananForm;
-use resources\views\components\layout\app;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-
-
-Route::resource('pemesanan', PemesananController::class);
-
-// Route untuk halaman utama
+// Public Routes
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->name('home');
 
-// Route untuk pemesanan
-Route::prefix('pemesanan')->group(function () {
-    Route::get('/', [PemesananController::class, 'index'])->name('pemesanan.index');
-    Route::get('/create', [PemesananController::class, 'create'])->name('pemesanan.create');
-    Route::post('/store', [PemesananController::class, 'store'])->name('pemesanan.store');
+// Authentication Routes
+Route::middleware('guest')->group(function () {
+    // Login Routes
+    Route::get('login', [AuthController::class, 'loginForm'])->name('login');
+    Route::post('login', [AuthController::class, 'login']);
+    
+    // Register Routes
+    Route::get('register', [AuthController::class, 'registerForm'])->name('register');
+    Route::post('register', [AuthController::class, 'register']);
+    
+    // Password Reset Routes
+    Route::get('forgot-password', [AuthController::class, 'forgotPassword'])
+        ->name('password.request');
 });
 
-// Route untuk konfirmasi
-Route::prefix('konfirmasi')->group(function () {
-    Route::get('/', [KonfirmasiController::class, 'index'])->name('konfirmasi.index');
-    Route::get('/create', [KonfirmasiController::class, 'create'])->name('konfirmasi.create');
-    Route::post('/store', [KonfirmasiController::class, 'store'])->name('konfirmasi.store');
+// Protected Routes
+Route::middleware('auth')->group(function () {
+    // Logout Route
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    
+    // Profile Routes
+    Route::get('profile', [AuthController::class, 'profile'])->name('profile');
+    Route::put('profile', [AuthController::class, 'updateProfile']);
+    
+    // Pemesanan Routes
+    Route::resource('pemesanan', PemesananController::class);
+    
+    // Konfirmasi Routes
+    Route::resource('konfirmasi', KonfirmasiController::class)->except(['show']);
+    
+    // Bukti Transfer Route
+    Route::get('bukti-transfer/{filename}', function ($filename) {
+        $path = 'bukti-transfer/' . $filename;
+        if (!Storage::disk('public')->exists($path)) {
+            abort(404);
+        }
+        return response()->file(Storage::disk('public')->path($path));
+    })->name('bukti-transfer.show');
 });
-
-// Route untuk bukti transfer
-Route::get('bukti-transfer/{filename}', function ($filename) {
-    $path = 'bukti-transfer/' . $filename;
-    if (!Storage::disk('public')->exists($path)) {
-        abort(404);
-    }
-    return response()->file(Storage::disk('public')->path($path));
-})->name('bukti-transfer.show');

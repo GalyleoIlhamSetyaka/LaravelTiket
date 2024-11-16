@@ -9,10 +9,16 @@ use Illuminate\Http\Request;
 
 class PemesananController extends Controller
 {
-   public function index()
-   {
-       return view('pemesanan.index');
-   }
+    public function __construct()
+    {
+        // Gunakan array untuk middleware
+        $this->middleware(['auth']);
+    }
+
+    public function index()
+    {
+        return view('pemesanan.index');
+    }
 
     public function create()
     {
@@ -20,7 +26,6 @@ class PemesananController extends Controller
         return view('pemesanan.create', compact('packages'));
     }
 
-// app/Http/Controllers/PemesananController.php
 
     public function store(Request $request)
     {
