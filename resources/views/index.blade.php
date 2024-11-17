@@ -16,7 +16,7 @@
                         Kabupaten Purworejo, Jawa Tengah. Selain di suguhkan dengan pemandangan yang sangai indah, banyak spot
                         foto yang menarik di Hutan Pinusan Kalilo
                     </p>
-                    <a href="{{ route('pemesanan.create') }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">PESAN SEKARANG</a>
+                    <a href="/login" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">PESAN SEKARANG</a>
                 </div>
                 <div>
                     <img src="{{ asset('img/tmbnl.jpg') }}" alt="Thumbnail" class="w-full rounded-lg shadow-md">

@@ -55,10 +55,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->authGuard('admin')
-            ->auth([
-                'guard' => 'admin',
-                'model' => Admin::class,
-            ]);
+            ->authGuard('admin') // Cukup gunakan ini untuk auth guard
+            ->tenant(Admin::class); // Gunakan tenant untuk model
     }
 }
