@@ -11,32 +11,32 @@ class TiketPaket extends Model
         return [
             1 => [
                 'name' => 'Basic Package',
-                'description' => 'Package for one person',
+                'description' => 'PAKET 1',
                 'num_people' => 2,
                 'price' => 10000,
                 'image' => 'img/paket/HPK-1.png',
                 'features' => [
-                    'Entrance ticket for 2',
+                    'Tiket masuk untuk 2 orang',
                 ]
             ],
             2 => [
                 'name' => 'Family Package',
-                'description' => 'Package for family',
+                'description' => 'PAKET 2',
                 'num_people' => 5,
                 'price' => 25000,
                 'image' => 'img/paket/HPK-2.png',
                 'features' => [
-                    'Entrance ticket for 5',
+                    'Tiket masuk untuk 5 orang',
                 ]
             ],
             3 => [
                 'name' => 'Group Package',
-                'description' => 'Package for groups',
+                'description' => 'PAKET 3',
                 'num_people' => 10,
                 'price' => 50000,
                 'image' => 'img/paket/HPK-3.png',
                 'features' => [
-                    'Entrance ticket for 10',
+                    'Tiket masuk untuk 10 orang',
                 ]
             ]
         ];
