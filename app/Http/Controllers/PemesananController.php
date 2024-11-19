@@ -20,7 +20,7 @@ class PemesananController extends Controller
     public function index()
     {
         $pemesanan = Pemesanan::with('pengunjung')->get();
-        return view('pemesanan.index', compact('pemesanan'));
+        return view('index', compact('pemesanan'));
     }
 
     public function create()
@@ -32,6 +32,7 @@ class PemesananController extends Controller
     public function store(Request $request)
     {
         try {
+            Log::info('Menerima data pemesanan:', $request->all());
             DB::beginTransaction();
 
             // Validate the request
@@ -40,16 +41,13 @@ class PemesananController extends Controller
                 'email' => 'required|email|max:255',
                 'phone' => 'required|string|max:255',
                 'order_date' => 'required|date|after:today',
-                'num_people' => 'required|integer|min:1',
-                'package' => 'required|integer',
+                'package' => 'required|integer|in:1,2,3',
                 'proof_of_payment' => 'required|image|mimes:jpg,jpeg,png|max:2048'
             ]);
 
-            Log::info('Received request data:', $validated);
-
             // Upload bukti pembayaran
             $proofPath = $request->file('proof_of_payment')->store('proof-of-payment', 'public');
-            Log::info('Uploaded proof of payment:', ['path' => $proofPath]);
+            Log::info('Bukti pembayaran diunggah:', ['path' => $proofPath]);
 
             // Create or find pengunjung
             $pengunjung = Pengunjung::firstOrCreate(
@@ -59,37 +57,35 @@ class PemesananController extends Controller
                     'phone' => $validated['phone']
                 ]
             );
-            Log::info('Created/found visitor:', $pengunjung->toArray());
+            Log::info('Pengunjung dibuat/ditemukan:', $pengunjung->toArray());
 
             // Get package details
-            $paket = TiketPaket::getPaketById($validated['package']);
-            Log::info('Got package details:', $paket);
+            $paket = TiketPaket::getPackageById($validated['package']);
+            Log::info('Detail paket:', $paket);
 
             // Create pemesanan
             $orderCode = 'RSV-' . time();
             $pemesanan = Pemesanan::create([
                 'order_code' => $orderCode,
                 'order_date' => $validated['order_date'],
-                'num_people' => $validated['num_people'],
-                'price' => $paket['harga'],
+                'num_people' => $paket['num_people'],
+                'price' => $paket['price'],
                 'visitor_id' => $pengunjung->id,
                 'proof_of_payment' => $proofPath
             ]);
-            Log::info('Created pemesanan:', $pemesanan->toArray());
+            Log::info('Pemesanan dibuat:', $pemesanan->toArray());
 
             DB::commit();
-            Log::info('Transaction committed successfully.');
 
             return redirect()
-                ->route('pemesanan.index')
+                ->route('pemesanan.create')
                 ->with('success', 'Pemesanan berhasil dibuat! Kode pemesanan Anda: ' . $orderCode);
         } catch (\Exception $e) {
             DB::rollback();
-            Log::error('Error creating pemesanan:', [
+            Log::error('Terjadi kesalahan saat membuat pemesanan:', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-
             return back()
                 ->withInput()
                 ->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
@@ -122,7 +118,7 @@ class PemesananController extends Controller
         ]);
 
         $pemesanan = Pemesanan::findOrFail($id);
-        $paket = TiketPaket::getPaketById($request->package);
+        $paket = TiketPaket::getPackageById($request->package);
 
         // Update pengunjung
         $pengunjung = Pengunjung::findOrFail($pemesanan->visitor_id);
@@ -173,7 +169,7 @@ class PemesananController extends Controller
         Log::info('Deleted pemesanan:', $pemesanan->toArray());
 
         return redirect()
-            ->route('pemesanan.index')
+            ->route('pemesanan.create')
             ->with('success', 'Pemesanan berhasil dihapus!');
     }
 }

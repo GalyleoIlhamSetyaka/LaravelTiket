@@ -27,7 +27,7 @@ class PemesananForm extends Component
     public function updatedSelectedPaket($value)
     {
         if ($value) {
-            $this->paketDetail = TiketPaket::getPaketById($value);
+            $this->paketDetail = TiketPaket::getPackageById($value);
         }
     }
 
@@ -35,7 +35,7 @@ class PemesananForm extends Component
     {
         $this->validate();
 
-        $paket = TiketPaket::getPaketById($this->selectedPaket);
+        $paket = TiketPaket::getPackageById($this->selectedPaket);
 
         // Create or find pengunjung
         $pengunjung = Pengunjung::firstOrCreate(
@@ -56,7 +56,7 @@ class PemesananForm extends Component
             'email_pgj' => $this->email_pgj,
             'nomor_pgj' => $this->nomor_pgj,
             'jumlah_orang' => $paket['jumlah_orang'],
-            'harga' => $paket['harga'],
+            'harga' => $paket['price'],
             'id_pgj' => $pengunjung->id_pgj
         ]);
 

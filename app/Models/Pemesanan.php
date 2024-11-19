@@ -23,18 +23,8 @@ class Pemesanan extends Model
     protected $dates = [
         'order_date'
     ];
-}
-
-// app/Models/Pengunjung.php
-class Pengunjung extends Model
+    public function pengunjung()
 {
-    use HasFactory;
-
-    protected $table = 'pengunjung';
-    
-    protected $fillable = [
-        'name',
-        'email',
-        'phone'
-    ];
+    return $this->belongsTo(Pengunjung::class, 'visitor_id');
+}
 }
