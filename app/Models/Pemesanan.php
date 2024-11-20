@@ -17,7 +17,8 @@ class Pemesanan extends Model
         'num_people',
         'price',
         'visitor_id',
-        'proof_of_payment'
+        'proof_of_payment',
+        'status',
     ];
 
     protected $dates = [
@@ -27,4 +28,9 @@ class Pemesanan extends Model
 {
     return $this->belongsTo(Pengunjung::class, 'visitor_id');
 }
+    public function getProofOfPaymentUrlAttribute()
+    {
+        return $this->proof_of_payment ? Storage::disk('public')->url($this->proof_of_payment) : null;
+    }
+
 }

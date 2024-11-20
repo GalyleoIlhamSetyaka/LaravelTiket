@@ -11,7 +11,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<bodyh class="h-screen">
     <!-- Navbar -->
     <nav class="bg-white shadow-lg">
         <div class="container mx-auto px-4">
@@ -31,7 +31,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white shadow-lg mt-8">
+    <footer class="bg-white shadow-lg mt-8 fixed inset-x-0 bottom-0 ">
         <div class="container mx-auto px-4 py-6">
             <p class="text-center text-gray-600">
                 &copy; {{ date('Y') }} Hutan Pinusan Kalilo. Created by 

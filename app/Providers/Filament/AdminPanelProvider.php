@@ -26,7 +26,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('admin') // URL akan menjadi /admin
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -55,7 +55,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->authGuard('admin') // Cukup gunakan ini untuk auth guard
-            ->tenant(Admin::class); // Gunakan tenant untuk model
+            ->authGuard('admin'); // Cukup gunakan ini untuk auth guard
     }
 }

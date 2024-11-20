@@ -8,7 +8,7 @@ return [
    */
    'defaults' => [
        'guard' => 'web',
-       'passwords' => 'pengunjung',
+       'passwords' => 'user',
    ],
 
    /*

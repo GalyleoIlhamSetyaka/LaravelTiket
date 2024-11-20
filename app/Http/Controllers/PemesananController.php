@@ -45,9 +45,13 @@ class PemesananController extends Controller
                 'proof_of_payment' => 'required|image|mimes:jpg,jpeg,png|max:2048'
             ]);
 
-            // Upload bukti pembayaran
-            $proofPath = $request->file('proof_of_payment')->store('proof-of-payment', 'public');
-            Log::info('Bukti pembayaran diunggah:', ['path' => $proofPath]);
+            // Upload dan simpan bukti pembayaran dengan nama file yang unik
+            if ($request->hasFile('proof_of_payment')) {
+                $file = $request->file('proof_of_payment');
+                $filename = time() . '_' . $file->getClientOriginalName(); // Nama file unik
+                $proofPath = $file->storeAs('proof-of-payment', $filename, 'public');
+            }
+            Log::info('Bukti pembayaran diunggah:', ['path' => $proofPath ?? null]);
 
             // Create or find pengunjung
             $pengunjung = Pengunjung::firstOrCreate(
@@ -63,7 +67,7 @@ class PemesananController extends Controller
             $paket = TiketPaket::getPackageById($validated['package']);
             Log::info('Detail paket:', $paket);
 
-            // Create pemesanan
+            // Tambahkan status default
             $orderCode = 'RSV-' . time();
             $pemesanan = Pemesanan::create([
                 'order_code' => $orderCode,
@@ -71,7 +75,8 @@ class PemesananController extends Controller
                 'num_people' => $paket['num_people'],
                 'price' => $paket['price'],
                 'visitor_id' => $pengunjung->id,
-                'proof_of_payment' => $proofPath
+                'proof_of_payment' => $proofPath ?? null,
+                'status' => 'pending' // Tambahkan status default
             ]);
             Log::info('Pemesanan dibuat:', $pemesanan->toArray());
 
@@ -92,21 +97,11 @@ class PemesananController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        $pemesanan = Pemesanan::with('pengunjung')->findOrFail($id);
-        return view('pemesanan.show', compact('pemesanan'));
-    }
+public function update(Request $request, $id)
+{
+    try {
+        DB::beginTransaction();
 
-    public function edit($id)
-    {
-        $pemesanan = Pemesanan::with('pengunjung')->findOrFail($id);
-        $pakets = TiketPaket::getPackages();
-        return view('pemesanan.edit', compact('pemesanan', 'pakets'));
-    }
-
-    public function update(Request $request, $id)
-    {
         // Validasi input
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -127,34 +122,60 @@ class PemesananController extends Controller
             'email' => $validated['email'],
             'phone' => $validated['phone']
         ]);
-        Log::info('Updated visitor details:', $pengunjung->toArray());
 
-        // Update bukti pembayaran jika ada
+        // Update bukti pembayaran jika ada file baru
         if ($request->hasFile('proof_of_payment')) {
-            // Hapus file lama jika ada
+            // Hapus file lama
             if ($pemesanan->proof_of_payment) {
                 Storage::disk('public')->delete($pemesanan->proof_of_payment);
             }
 
-            // Upload file baru
-            $buktiPath = $request->file('proof_of_payment')->store('bukti-pembayaran', 'public');
-            $pemesanan->proof_of_payment = $buktiPath;
-            Log::info('Uploaded new proof of payment:', ['path' => $buktiPath]);
+            // Upload file baru dengan nama unik
+            $file = $request->file('proof_of_payment');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $proofPath = $file->storeAs('proof-of-payment', $filename, 'public');
+            
+            // Update path di database
+            $pemesanan->proof_of_payment = $proofPath;
         }
 
-        // Update pemesanan
+        // Update data pemesanan
         $pemesanan->update([
             'order_date' => $validated['order_date'],
             'num_people' => $paket['num_people'],
-            'price' => $paket['harga']
+            'price' => $paket['price']
         ]);
-        Log::info('Updated pemesanan details:', $pemesanan->toArray());
+
+        DB::commit();
 
         return redirect()
             ->route('pemesanan.show', $pemesanan->id)
             ->with('success', 'Pemesanan berhasil diperbarui!');
+
+    } catch (\Exception $e) {
+        DB::rollback();
+        Log::error('Error updating pemesanan:', [
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        return back()
+            ->withInput()
+            ->withErrors(['error' => 'Terjadi kesalahan: ' . $e->getMessage()]);
+    }
+}
+
+    public function show($id)
+    {
+        $pemesanan = Pemesanan::with('pengunjung')->findOrFail($id);
+        return view('pemesanan.show', compact('pemesanan'));
     }
 
+    public function edit($id)
+    {
+        $pemesanan = Pemesanan::with('pengunjung')->findOrFail($id);
+        $pakets = TiketPaket::getPackages();
+        return view('pemesanan.edit', compact('pemesanan', 'pakets'));
+    }
     public function destroy($id)
     {
         $pemesanan = Pemesanan::findOrFail($id);

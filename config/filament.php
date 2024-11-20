@@ -1,7 +1,13 @@
 <?php
 
 return [
-
+    'auth' => [
+        'guard' => 'web',
+        'model' => \App\Models\Admin::class,
+    ],
+    'admin' => [
+    'user_model' => App\Models\Admin::class,
+],
     /*
     |--------------------------------------------------------------------------
     | Broadcasting
