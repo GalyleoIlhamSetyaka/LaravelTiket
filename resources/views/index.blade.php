@@ -10,7 +10,7 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <h1 class="text-4xl font-bold mb-4">Hutan Hutan Pinusan Kalilo</h1>
+                    <h1 class="text-4xl font-bold mb-4">Hutan Pinusan Kalilo</h1>
                     <p class="mb-8 text-lg">
                         Hutan Pinusan Kalilo merupakan destinasi wisata yang berada di Desa Tlogoguwo, Kecamatan Kaligesing,
                         Kabupaten Purworejo, Jawa Tengah. Selain di suguhkan dengan pemandangan yang sangai indah, banyak spot
@@ -27,6 +27,21 @@
             </div>
         </div>
     </div>
+
+    <!--Virtual Tour Section-->
+    <section class="py-16" id="VirtualTour">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Virtual Tour</h2>
+            <div style="--aspect-ratio: 16/9">
+                <iframe
+                    height="800"
+                    src="https://app.lapentor.com/sphere/kalilo"
+                    width="100%"
+                    title="Virtual Tour"
+                ></iframe>
+            </div>
+        </div>
+    </section>
 
     <!-- Gallery Section -->
     <section class="py-16" id="Galleri">
