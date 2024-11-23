@@ -1,23 +1,23 @@
-Hutan Pinusan Kalilo - Sistem Pemesanan Tiket Online
+## Hutan Pinusan Kalilo - Sistem Pemesanan Tiket Online
 Aplikasi web pemesanan tiket untuk wisata Hutan Pinusan Kalilo. Sistem ini memungkinkan pengunjung untuk memesan tiket secara online, melihat status pemesanan, dan mengelola tiket mereka.
-🌟 Fitur
+##🌟 Fitur
 Pengunjung
 
-Autentikasi pengguna (login/register)
+## Autentikasi pengguna (login/register)
 Pemesanan tiket online
 Upload bukti pembayaran
 Lihat status pemesanan
 Download tiket yang sudah dikonfirmasi
 Virtual tour lokasi wisata
 
-Admin
+## Admin
 
 Dashboard admin
 Manajemen pemesanan tiket
 Konfirmasi pembayaran
 Laporan pemesanan
 
-🚀 Teknologi yang Digunakan
+## 🚀 Teknologi yang Digunakan
 
 Framework: Laravel 11.0
 Frontend:
@@ -31,7 +31,7 @@ Admin Panel: Filament
 Database: MySQL
 File Storage: Laravel Storage
 
-💻 Instalasi
+## 💻 Instalasi
 
 Clone repository
 
@@ -68,7 +68,7 @@ bashCopyphp artisan storage:link
 Jalankan server
 
 bashCopyphp artisan serve
-📁 Struktur Database
+## 📁 Struktur Database
 Tabel pengunjung
 
 id (PK)
@@ -93,7 +93,7 @@ status
 created_at
 updated_at
 
-👥 User Roles
+## 👥 User Roles
 Admin
 
 Akses ke dashboard admin
@@ -108,20 +108,20 @@ Upload bukti pembayaran
 Lihat status pemesanan
 Download tiket
 
-🔒 Authentication
+## 🔒 Authentication
 
 Login menggunakan email dan password
 Register dengan nama, email, dan password
 Middleware auth untuk halaman terproteksi
 
-📱 Responsif
+## 📱 Responsif
 Aplikasi dioptimalkan untuk:
 
 Desktop (>1024px)
 Tablet (768px - 1024px)
 Mobile (<768px)
 
-📷 Screenshot
+## 📷 Screenshot
 ![image](https://github.com/user-attachments/assets/5e53d095-d1fa-4b37-b158-931fb1ae79df)
 Halaman Utama
 ![image](https://github.com/user-attachments/assets/b80df51c-f599-4143-aa58-e712c9b50f51)
@@ -130,32 +130,32 @@ Halaman Pemesanan
 Dashboard Admin
 ![image](https://github.com/user-attachments/assets/53950639-6eae-4978-827c-1d21109ce843)
 
-🤝 Kontribusi
+## 🤝 Kontribusi
 Kontribusi selalu disambut baik! Silakan buat pull request untuk:
 
 Bug fixes
 New features
 Documentation improvements
 
-📝 License
+## 📝 License
 MIT License
-👨‍💻 Developer
+## 👨‍💻 Developer
 Ilham Setyaka
 
 GitHub: @GalyleoIlhamSetyaka
 
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 
 Laravel
 Filament
 Tailwind CSS
 Alpine.js
 
-📞 Contact
+## 📞 Contact
 Untuk pertanyaan dan saran, silakan hubungi:
 
 Email: your-email@example.com
 GitHub Issues: New Issue
 
 
-Dibuat dengan ❤️ untuk Hutan Pinusan Kalilo
+## Dibuat dengan ❤️ untuk Hutan Pinusan Kalilo
