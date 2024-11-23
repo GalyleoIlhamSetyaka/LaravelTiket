@@ -34,40 +34,47 @@ File Storage: Laravel Storage
 ## 💻 Instalasi
 
 Clone repository
-
+```
 bashCopygit clone https://github.com/yourusername/hutan-pinusan-kalilo.git
 cd hutan-pinusan-kalilo
+```
 
 Install dependencies
-
+```
 bashCopycomposer install
 npm install
+```
 
 Setup environment
-
+```
 bashCopycp .env.example .env
 php artisan key:generate
+```
 
 Konfigurasi database di file .env
-
+```
 envCopyDB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laraveltiket
 DB_USERNAME=root
 DB_PASSWORD=
-
+```
+ 
 Jalankan migrasi dan seeder
-
+```
 bashCopyphp artisan migrate --seed
+```
 
 Link storage
-
+```
 bashCopyphp artisan storage:link
+```
 
 Jalankan server
-
+```
 bashCopyphp artisan serve
+```
 ## 📁 Struktur Database
 Tabel pengunjung
 
