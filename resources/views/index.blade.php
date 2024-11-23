@@ -29,18 +29,19 @@
     </div>
 
     <!--Virtual Tour Section-->
-    <section class="py-16" id="VirtualTour">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-8">Virtual Tour</h2>
-            <div style="--aspect-ratio: 16/9">
-                <iframe
-                    height="800"
-                    src="https://app.lapentor.com/sphere/kalilo"
-                    width="100%"
-                    title="Virtual Tour"
-                ></iframe>
-            </div>
+    <section class="py-8 md:py-16" id="VirtualTour">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8"><a href="https://app.lapentor.com/sphere/kalilo">Virtual Tour</a></h2>
+        <div class="relative w-full overflow-hidden" style="padding-top: 56.25%"> <!-- 16:9 Aspect Ratio -->
+            <iframe
+                class="absolute top-0 left-0 w-full h-full"
+                src="https://app.lapentor.com/sphere/kalilo"
+                title="Virtual Tour"
+                allowfullscreen
+                loading="lazy"
+            ></iframe>
         </div>
+    </div>
     </section>
 
     <!-- Gallery Section -->
@@ -116,4 +117,28 @@
     </section>
 </div>
 @endsection
+<style >
+.virtual-tour-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
 
+.virtual-tour-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Custom breakpoints jika diperlukan */
+@media (max-width: 640px) {
+    .virtual-tour-container {
+        padding-bottom: 75%; /* Aspect ratio berbeda untuk mobile */
+    }
+}
+</style>

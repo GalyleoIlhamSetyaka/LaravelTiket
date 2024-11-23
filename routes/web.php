@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
     // Konfirmasi Routes
     Route::resource('konfirmasi', KonfirmasiController::class)->except(['show']);
     
+    //Lihat tiket Routes
+    Route::get('/my-tickets', [PemesananController::class, 'myTickets'])->name('pemesanan.my-tickets');
+    Route::get('/ticket/{pemesanan}/download', [PemesananController::class, 'downloadTicket'])->name('pemesanan.download-ticket');
+    Route::delete('/ticket/{pemesanan}/cancel', [PemesananController::class, 'cancel'])->name('pemesanan.cancel');
+
     // Bukti Transfer Route
     Route::get('bukti-transfer/{filename}', function ($filename) {
         $path = 'bukti-transfer/' . $filename;

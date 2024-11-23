@@ -193,4 +193,53 @@ public function update(Request $request, $id)
             ->route('pemesanan.create')
             ->with('success', 'Pemesanan berhasil dihapus!');
     }
+
+
+public function myTickets()
+{
+    $tickets = Pemesanan::with('pengunjung')
+        ->where('visitor_id', auth()->id())
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('pemesanan.my-tickets', compact('tickets'));
+}
+
+public function downloadTicket(Pemesanan $pemesanan)
+{
+    // Pastikan pengguna yang mengakses adalah pemilik tiket
+    if ($pemesanan->visitor_id !== auth()->id()) {
+        abort(403);
+    }
+
+    // Generate PDF tiket
+    $pdf = PDF::loadView('pemesanan.ticket-pdf', [
+        'ticket' => $pemesanan
+    ]);
+
+    return $pdf->download('tiket-'.$pemesanan->order_code.'.pdf');
+}
+
+public function cancel(Pemesanan $pemesanan)
+{
+    // Pastikan pengguna yang mengakses adalah pemilik tiket
+    if ($pemesanan->visitor_id !== auth()->id()) {
+        abort(403);
+    }
+
+    // Pastikan tiket masih pending
+    if ($pemesanan->status !== 'pending') {
+        return back()->with('error', 'Tiket yang sudah dikonfirmasi tidak dapat dibatalkan');
+    }
+
+    // Hapus bukti pembayaran jika ada
+    if ($pemesanan->proof_of_payment) {
+        Storage::disk('public')->delete($pemesanan->proof_of_payment);
+    }
+
+    $pemesanan->delete();
+
+    return redirect()->route('pemesanan.my-tickets')
+        ->with('success', 'Pemesanan berhasil dibatalkan');
+}
 }
