@@ -101,7 +101,7 @@ Tabel pemesanan
 - updated_at
 
 ## 👥 User Roles
-- Admin
+Admin
 
 - Akses ke dashboard admin
 - Manajemen semua pemesanan
