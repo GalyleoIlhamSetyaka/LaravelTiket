@@ -78,30 +78,30 @@ bashCopyphp artisan serve
 ## 📁 Struktur Database
 Tabel pengunjung
 
-id (PK)
-name
-email (unique)
-phone
-password
-remember_token
-created_at
-updated_at
+- id (PK)
+- name
+- email (unique)
+- phone
+- password
+- remember_token
+- created_at
+- updated_at
 
 Tabel pemesanan
 
-id (PK)
-order_code (unique)
-visitor_id (FK)
-order_date
-num_people
-price
-proof_of_payment
-status
-created_at
-updated_at
+- id (PK)
+- order_code (unique)
+- visitor_id (FK)
+- order_date
+- num_people
+- price
+- proof_of_payment
+- status
+- created_at
+- updated_at
 
 ## 👥 User Roles
-Admin
+- Admin
 
 Akses ke dashboard admin
 Manajemen semua pemesanan
