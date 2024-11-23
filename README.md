@@ -4,32 +4,32 @@ Aplikasi web pemesanan tiket untuk wisata Hutan Pinusan Kalilo. Sistem ini memun
 Pengunjung
 
 ## Autentikasi pengguna (login/register)
-Pemesanan tiket online
-Upload bukti pembayaran
-Lihat status pemesanan
-Download tiket yang sudah dikonfirmasi
-Virtual tour lokasi wisata
+- Pemesanan tiket online
+- Upload bukti pembayaran
+- Lihat status pemesanan
+- Download tiket yang sudah dikonfirmasi
+- Virtual tour lokasi wisata
 
 ## Admin
 
-Dashboard admin
-Manajemen pemesanan tiket
-Konfirmasi pembayaran
-Laporan pemesanan
+- Dashboard admin
+- Manajemen pemesanan tiket
+- Konfirmasi pembayaran
+- Laporan pemesanan
 
 ## 🚀 Teknologi yang Digunakan
 
-Framework: Laravel 11.0
-Frontend:
+- Framework: Laravel 11.0
+- Frontend:
 
-Tailwind CSS
-Alpine.js
-Blade Template
+ - Tailwind CSS
+ - Alpine.js
+ - Blade Template
 
 
-Admin Panel: Filament
-Database: MySQL
-File Storage: Laravel Storage
+- Admin Panel: Filament
+- Database: MySQL
+- File Storage: Laravel Storage
 
 ## 💻 Instalasi
 
@@ -103,30 +103,30 @@ Tabel pemesanan
 ## 👥 User Roles
 - Admin
 
-Akses ke dashboard admin
-Manajemen semua pemesanan
-Konfirmasi pembayaran
-Lihat laporan
+- Akses ke dashboard admin
+- Manajemen semua pemesanan
+- Konfirmasi pembayaran
+- Lihat laporan
 
 Pengunjung
 
-Pemesanan tiket
-Upload bukti pembayaran
-Lihat status pemesanan
-Download tiket
+- Pemesanan tiket
+- Upload bukti pembayaran
+- Lihat status pemesanan
+- Download tiket
 
 ## 🔒 Authentication
 
-Login menggunakan email dan password
-Register dengan nama, email, dan password
-Middleware auth untuk halaman terproteksi
+- Login menggunakan email dan password
+- Register dengan nama, email, dan password
+- Middleware auth untuk halaman terproteksi
 
 ## 📱 Responsif
-Aplikasi dioptimalkan untuk:
+- Aplikasi dioptimalkan untuk:
 
-Desktop (>1024px)
-Tablet (768px - 1024px)
-Mobile (<768px)
+- Desktop (>1024px)
+- Tablet (768px - 1024px)
+- Mobile (<768px)
 
 ## 📷 Screenshot
 ![image](https://github.com/user-attachments/assets/5e53d095-d1fa-4b37-b158-931fb1ae79df)
@@ -140,29 +140,29 @@ Dashboard Admin
 ## 🤝 Kontribusi
 Kontribusi selalu disambut baik! Silakan buat pull request untuk:
 
-Bug fixes
-New features
-Documentation improvements
+- Bug fixes
+- New features
+- Documentation improvements
 
 ## 📝 License
-MIT License
+- MIT License
 ## 👨‍💻 Developer
-Ilham Setyaka
+- Ilham Setyaka
 
-GitHub: @GalyleoIlhamSetyaka
+- GitHub: @GalyleoIlhamSetyaka
 
 ## 🙏 Acknowledgments
 
-Laravel
-Filament
-Tailwind CSS
-Alpine.js
+- Laravel
+- Filament
+- Tailwind CSS
+- Alpine.js
 
 ## 📞 Contact
-Untuk pertanyaan dan saran, silakan hubungi:
+- Untuk pertanyaan dan saran, silakan hubungi:
 
-Email: your-email@example.com
-GitHub Issues: New Issue
+- Email: your-email@example.com
+- GitHub Issues: New Issue
 
 
 ## Dibuat dengan ❤️ untuk Hutan Pinusan Kalilo
